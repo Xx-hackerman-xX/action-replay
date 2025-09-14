@@ -1,103 +1,15 @@
 // ==UserScript==
 // @name         ActionReplay
 // @description  log and replay posts, as your browser saw them
-// @version      1.0
+// @version      1.1
 // @match        *://*.libpol.org/*
 // @run-at       document-idle
 // @grant        none
 // @icon         data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAABAbSURBVFhHzVkJWJNXuj5/9p0khCUgFBRkcwMV3HCsqGi1WpW2dqx1Wn3GOu3V0S62tk6reLWOtnbqNh2rbbXWTjutHb3WFhVXBBXQIgqyrwkEspGYBLL89/3z0xS5zDgzd5773O8Jf85/1vd83/t95zuB0mq15P+TcHq//61C07TP5/N6vT4finRv7T8m/wYNYW2Lxd7dfa/3/SehJHLaYet96SNSqUIul1AU1ft+v/zrgAwGs9frYssPz3g4OSVxyJAYZZBCpQySikUCPp/H4bg9Xh/t68EXTZvMFp2urbGh6UZpWVHBVYzickWhoSp2hoD804BsNofdbkVh5qPZU7MmR0dFhgerVSKRyO3mdNl8nSba2uWz36MdTuLqJtACn8+Ry6ggOUcTzAkJppVBDkJaO4xlt26fO3Pxh1NnMFV4eHhAYf8oIFChra0NhbHjxz62YE7qiJRIhVzW0+NtaHaX3fGUV3rzSmjazHaG9LVHgESopMaO4Y0ZKRg7ipcY75RJqxubv//u9If7PkZrREQEVnkwIGDX6XQoPLN00Zx5s+IHRcptds+Nsu68C968s2wfQiSUREYEXJTY5QOA7qO0jyZdTkKsqKQIl79qufiRaXRMdHl17aGDR44dOxkWFjYwIHiG3zuY2e7dcy5c+MicOdmJCXHc2nrnidO+g4fhnDQRE0UQ4VBMrz4K4RHi7YOD729ka9hejJ5Q0+MlDgMq+SuXyZ7OcaiUx4+fWv/apv6AOByqtZXRR19Zs2Zlp9FkaNHdy7/kIySEEDUhME8ABjMvIT1QFCGRhDQQ0v1T63jCDZOrrts6QR3UoKeGkF8Ea6O9BFMx71Y9diH+0w5RVubFwuv9Aen1+tWrV8yalSWVSjkcTk9PT1nZncOH/7x27W9CQjSwn9fnratvqqqpmz1zmsfjgc/Dn6DOC5eKoMKr10o7LdZpv5goEYsQg+x2+6n8y8evlr69fHFYiAZ6R2Sqb249sffTfTQ/mFAMJtDZ1k17jIL1a6VLnuDK5XIWCsThcMXFxW7cuE6j0ZSXV1itXcOGJWk06tTU4enpo1ta9FaLJT5ucHLS0Ma6RmWQPEIbFvNQlLHT6HK6BDzetKmTbdauxU/Ofyh6EJYODdFkjE1TyaQLpk6aO3uGQi4N1WhSRw5LSYj79FLh5EaDRsiHghgRcCmR3Hv6tIdQ90Vqq9U8efI4pTIIhktMjI+PH+Kv7IqNfaimpm7u3F8+9dSvt2x579NPv9iz5+C8eU+bzVaTyTxjRg7KEonY6XSJREKFQo4OWVnz9+z5CAp2u93DhydXVdWkp0+fMGFmW1u7w+k01jTIxYJeND8JpY7w7tnf/+hISxsJS+XnX8rLO19f38Dj8e7dc8jlsvb2DrTm5Mx94onHeDxuc3PL1KmTIyPDm5tbUc/lCgcPjjEaTSEhwQ6Hs8Af9yZNGoen0+mUSiWwO8qzZ8/QaIIbm1onmE1qHq8fIMYHldpeQDh2wB4UYDKo5K23fr9hw5bOThPOo6amFhBl7NjUGzfO5+auHzEiBdtGT9TIZLLbtytRnjdvelhYSH19I58vkMmkO3duLiz8ITt7amNjM7iIwHH9+g10Gz9+LDPkbnU6IUI/obF8QCUogPUMh9xuT0eHYecftjg5nJqGxotFxdduVZJul1YbXl1de/jwV3p9W3V1Hcq3blUcPfr1vn0HMV6tVtlsti+//Ctag4PVgI5AAnxgOtRpNpvLyiu27z8cJBE1N7Xu2LEbQ0ADGPHDA0c8bYZyl/2yy+5TKBxczmdGXYHLbpDJYmiKQthGCN5/cNe0jLTbb75z69gJMVxaGPRdetI7b78ml8PXuF6vB4Y4ffq8wdD55JOPYdPsGd7VZaupqQfloQNYFpUtLbozZy4sXpzz5dcnbnz8+SIiKSSO/yJk/fo1GRmj0Q2Ucrm6j534YWx6Ko/Le+mNrcTetW7Dy9GDtC+898cjegsPaN7a9NrUSRn2Dw8NOnYiWhXB9dHnrHqQKT4+tqiopKLiblLS0IkTM7BkREQ4WFVcfIOJ8RRlsXRlZKSp1epr10qAD0MGD34IpIZZvzqZ9zwh0xVB8i6HesWvli1jPKChoTE0NASsAKvgMSAi0GDggjnZ4GWk0RLsJZycx+c98fi87rzzPe/u9qm0Hprupsh1QkYNS6QoTmSkFlyJiYnGtiwWKxyQy+UmJyfCcbAq6OLXli8Ih7xKKRQK29sNIFNnp/Ho6QtSjrzd47lGSGbGaDQhQQI9sI3ubsb1gEmhUOzdu/2rrz7WasPKyitHdHZokCI8/8IyYWOL88VXKUkoaAZm2Ql9EeyOjYFFwI+UlCSBQLB7935oBeq5efPWpUuFFy8WwhOhM+jDaDQLRSKBUFhccvPo0W/AJ8SCnpq63CDBcoH3M0KGDsFUXRUVVZiNz+eDZBheWlqGsTiRhgyOuV5y83effD6TkiHc82I16q6X3mbCvJALQCgYbS7emFRteCj4kZPz7BdffDR69Ei4HmgLz0hLGwELorvNZu/o6ERh5/t/LP/6RCwhtwgZ8Wg2AjdCQHFxPjIhLodz+/bd8PDQqqrapUtfQOeCglMYeODAF7t27c/P/xY1ixavEFVWreTKxqsUiOPcXw+N9+zZT6kiGC/0+55NwN3No10WS17+pfqqujt3qrBjhOkDBz43mUxwt8rK6rt3a8rKbiOa37lz96PTF7ZxRUsEitli2Sm9vtbdbdC1t7a0tjS3IkqhT2urPi/vHBsgsJmiouILFy6jnJKSiPj09V/+uis4fCJPyJ50VGnUYGK0s5kDKz6KlHJos7HNSkR/ilR3tuqioqJmz54WHKzyH14McBxSUFhHh7GgoNhgaEdQWR0cmo2T3kffNOuRdJ1i58JZGxkBpoNYCOUwOqwMFiKfwwmG6ICtIkSlqYNzKcEgL5MUUKWiECLmseoJCBNEKfKlgGw26DdvXj9r1jRwFhG8t9mfR+OJAIYFamvrC65ce3/nvmhCtoZGKH1kp8VyxuN49dX/mDAhPSoqElAAAnRmxwaEuQT4fJWVVQtefmuV2f4szRxtVKlygHwI6mrkkrlG/RtvvrTsucWYzk+g/oI1IAAKzYElv39vb37euSCeKDR5yI7c1+GGGIgl2aA1oGA4Ovxu03b9J0e3qLQ43n7edF/BXmooZpasqZnwrAHRQLASpgMabD4lJWHLptcnTMyw+ujd2zciJqHdb2L/VehvCPp0d3e3G81awuP6YQ8MCGfVj1320ZnjkQMhfvTWojeHgwjmFw4211vLIGPMh6C15OnHN729JikpHpGG1QuG/C3xz8P78Wb56RPfp4ZoBH5SDwAIVXYOOdtjTx+ezDKRrQcC0BBO19DQ1NrahmQD87FNrLDayswc39dECKcYZTDc9zGbLYgjen372TMXFq3fPFypHuX1J2v+DLi/YOOtHNKC83zMKDaOsfXQ/SeffL7Pf0MgAkl21oQXnn92xMgU4EAF4CLTwBrTp09ha6ADBKqlS1+8c4dx+L4ikcijo7UdHSajsTNLGbyKJ9J4aMYQHt8AgCAVfgLFxEQF1IPZsafim+UTRfJpMonbRx87debxqzfOnzyCAw7+AkBQBjInuDQLCGORbOzatZWdBPtxuZiLJV6ROZ07V4DMOEWrXddNwt20B2rw+ojd2R8Q6pGf3zJaM6dNwUHITs3UM/YyXC+8vkMTPtPN4B0aEvGrDl1DQzMiDRO8KII8CUYMcAsLI4GMixvMvkICTRCkb4mJcW+88Z+NIdowLILLi61d9ME7/TmEEWYO+dbnnJSeivMvoCHMhZMEhVi619gdNPONk4vtgwf6I90JDIGgDA8NCKwfEBy38+Y9Mmn6lPxOswd3KbOev/p58ays/oDw3uSvG5cxOsBZoMFpf6WoZAwir49AvVeF1CudbSt/8xzSbVaLeKrVSnAOGSaeMDFG9RN2NlaADxsYMzy5GpY06bgzpyuWP11cdqc/IMxd6XIFD09BhA3YC7MbjcbPvjkl1oQU8Mkur2u5QTd/4aPPPftLgYC5A/n7UIhYKKxdu+HatVJkCvB8COzIfiB9lQfBK5bATZakpgZtfLW607h21ev3cQhbuEeRy3bzrLRs0DMwHnurqKgmduslO7lEiHjI4PdzX8nKykRCg42yu8cZjjNk3bqN6L9w4dKoqEEIlf4WZgL8wZrjxo1ZunQRcGNmNABlY3NrQmJC6AebG93uV377ZkurjiolCqKWMRm//8So45L5Rv277+bigoHFUAnB4LY2g06nhy1gR9wckFGw+0MTCIHcCC6G8w4Bk10erWhHGa1IfwEL3gf7Iq1GAzpgHhg3M3P2nr3bk1MSX167oaTkZkREBI+akEJfKSGqYPZ8reMwX0gM+locUyCpQyBm3+DAfbGePXsRCT/uGLAsW/k/hNU0hXkCAyGXLxfh2dTYcvDAERYNOnAkr6+icSvvgrMzBKrttE6YPmXQoIgAgVjBq985IMwZzVYiF0PMBV3S09MwV2/7AAL/YlwsgAaaxs1z27Y9ISEh27b9obq6gUWDJg6VFC858AHtNRGHm6aInXZGhYeJxaL7+fezQCXQBHiAQnOz7tChP0dFRUD/7HQPFHYs0Gzd+r7FYgIyrVYrlf58QHFhi5Fzsjmjhru/+QvX5atVBu23WR8Zm4oAgyX7CQZgnwjZSDaOfXvyufVbik6fw/0mISEOy8DRsB5oNKBgI1At7h4XL15Zs2YDcvOAVvoKs8am3PWLnlpAyu44X86tq6vOkci9MvGKhXMUip8dDUIRirmWmyxXyiuafixHzXKVxiTkf2O2LnsmJzYmClSRSMW4bf1EGv+Xvwg8SOVwkS0sLAYUpVItkcAI/dFAei+Kv12zcsnSRcE+n+PYdzW5238gpBDJNcIx5urtyeSXKhxwuJDIVAliUZKPRHhJF4d8x6W/7Wir6u01gMjlSpvNwpYVCiUMxJYHFOb3IdhCp9PhcHlx9YrUESlCXZs971zXu4c8PUaAoEgQUYqZX8pQpgmyFiHNBAgIWgEX27RTxAWy2+yEOPwthJM1RZiVKZ6Y7hbwKyuq9u79uKamUSxG8v0A6f3BCpgMBpPH41ryzJPzc+YmDImV2O95qmu7C0u8RaW+EuZiGpCAotkCkPo/Ms7Do7mpw/gpCfy4WILblcdbebfmwvmC48e/dzhcQiH28mAZ4Bc0PGfMzJqePRVJcWSoRoRYbLH6TBav0eSzWGmnCx/mJ1+phCOVUEoFNyiIo1ZyVEpaJu2mKFNXV2Njy43SH/PPXCwtuYnZwsLCQGr/9A+W/oBYgba8XiYyAVbysMS4+CEIzSplkFgkZH8RBx+hHjcCi88HtiIBbG8ztDS13r5dcfIEbkFMvAF1ZLK/R5cBZWBArGBRo9HqdjPHHys8gSQ6Klwul+Io8rjdHQaT1WLr6enljV/4oaGqQJrwL8jfA9RPgM8fr5n/quAVtEPCj2e/hP9/Kf8EoP8LIeS/ATpmgM22HRZ9AAAAAElFTkSuQmCC
 // @author       github.com/Xx-hackerman-xX
-// @downloadURL  https://raw.githubusercontent.com/Xx-hackerman-xX/action-replay/refs/heads/main/action-replay.js
+// @downloadurl  https://github.com/Xx-hackerman-xX/action-replay/blob/main/action-replay.js
 // @date         2025.04.28
 // ==/UserScript==
-
-
-/*
-
-  fix
-
-    - animation weirdness on replay btn
-      - jerks around when transitioning from de-activation rotate into replaying animation
-
-    - spamming the replay button makes the whole post freak out
-      - the replays haven't been told to stop cause the stopflag is only ready from classlist... if it's not there when replay wakes up, she'll just keep on goin and they all overwrite eachother
-      - need a proper playback management to prevent
-
-
-  additions
-
-    - settings menu in cogwheel
-      - checkbox to remove true delays and make them static (200ms or whatever)
-      - button to clear all replays in storage
-    - changing settings
-      - sets localstorage flag and refreshes
-        - tell user that changing anything will refresh
-        - doable without refresh? do that
-      - flag checked within playback function
-      - if true, sub in for our cool static wait time
-
-    - view ticks per word rather than per char
-      - run normal replay without any wait until the char we're printing next is a space
-      - probably some other weird "word" edge cases but that would be cool in itself
-
-    - add more play controls
-      - new playback state handler
-        - when a post is told to replay, a little worker will keep track of it
-        - when replay finishes, the worker dies
-        - worker keeps track of its current playing state, playing index, etc
-      - play
-        - new worker created
-        - starts from start, plays until told to stop
-      - pause
-        - worker stops playing but keeps track of where she is
-      - resume
-        - only shows after pause is clicked
-        - worker continues operation from the last char it was at
-      - tick forward/back
-        - how tf do u handle reversing the string??
-          - go backward thru the steps, and.... undo it?
-            - how to handle splices, where it doesn't say what was removed, only the length of text removed?
-            - might be easier to just run through entire process from start up to that index lol
-
-    - new player state, maybe store just in memory
-      - nowPlaying: postID
-      - state: playing, paused (can be resumed at pauseFrame), stopped
-      - pauseFrame: index of postID that was last played
-
-    - optimise steps
-      - cut off first n chars of lastSeen unix time
-        - max time a post can be alive is 30 mins before it's auto closed
-        - 30 mins is 1,800,000 ms, 7 chars
-        - full unix time is 12 chars... save 5 whole bytes per replay.... waow....
-        - idk if it's worth the cycles lol
-
-
-  future
-
-    - allow viewing replays from the collection rather than from clicking button
-      - big list of em u can scroll thru i guess
-      - only really useful for viewing deleted posts (blankposted)
-        - could find a list of the deleted posts on this page and let users view replays of deleted posts only thru a lil menu on bottom
-        - where are deleted posts stored? probably nowhere... hmmmmm....
-        - could see what posts we have stored that are in this thread but not in the posts model
-          - need to not include anything offscreen, so check for youngest non-op post in the model and work within that range
-      - standalone post to play them in
-        - make it look swag please
-
-    - handle images?
-      - only rly matters for posts that received an image which was then deleted or #give'd over
-      - insertImage message gets sent on user image upload
-      - user can only upload one image while editing so not rly useful to log it i don't think
-
-    - time slider control
-      - calculate how long the entire post replay is
-      - slider which drags you to the closest frame (?)
-        - the slider would probably need to work in fixed timestep increments of like 200ms or something
-
-*/
-
-
-
 
 
 /* core */
@@ -179,7 +91,7 @@ for (const [key, value] of Object.entries(message)) {
 const SVG_REPLAY = `<svg class="svg-refresh" viewBox="0 0 24 24" fill="none"><path d="M12 21C7.02944 21 3 16.9706 3 12C3 9.69494 3.86656 7.59227 5.29168 6L8 3M12 3C16.9706 3 21 7.02944 21 12C21 14.3051 20.1334 16.4077 18.7083 18L16 21M3 3H8M8 3V8M21 21H16M16 21V16"/></svg>`
 
 // localstorage size limit. most browsers limit localstorage to 5/10mb per domain but i'd rather never hit the limit at all
-const LOCALSTORAGE_LIMIT = 3 * 1024 * 1024  // 3MB
+const LOCALSTORAGE_LIMIT = 500 * 1024  // 500KB is enough for like 1000+ short posts (plenty)
 
 // vanilla function, replaced later
 var vanilla_socket_onmessage = null
@@ -205,7 +117,7 @@ function replaceSocketOnmessage() {
   // replace vanilla socket.onmessage with our own
   vanilla_socket_onmessage = windowRequire("connection/state").socket.onmessage  // save
   windowRequire("connection/state").socket.onmessage = modified_socket_onmessage  // shim
-  console.log("socket.onmessage replaced :)")  // hooray
+  console.log("[replay] socket.onmessage replaced :)")  // hooray
 }
 
 async function doTheShim(delay=10) {
@@ -303,6 +215,7 @@ function modified_socket_onmessage({data: e}, concatMessage=false) {
   // add replay button to new posts, from us or from others
   if (needsReplayButton) {
     addReplayButtonToPostID(needsReplayButton)
+    addReplayIDToBox(needsReplayButton)  // add to our list of replayable without having to refresh page
   }
 }
 
@@ -324,22 +237,34 @@ function getFractionFullLocalstorage() {
   return getSizeLocalstorage() / LOCALSTORAGE_LIMIT
 }
 
-function lightenLocalstorage() {
+async function lightenLocalstorage() {
   // trim replays from localstorage if we're over the limit
   const initialSize = getSizeLocalstorage()
   if (initialSize < LOCALSTORAGE_LIMIT) {
     return
   }
+
+  console.log("removing old posts...")
+
+
+  let currentSize = initialSize
   const fractionFreeGoal = 0.1  // want at least this much free space
+
+
   let postIDs = getAllReplayIDs()  // pre-sorted, oldest to newest
+
+
+
+
   // keep trimming until we run out of posts, or we're below our goal size free
   while (postIDs.length && (getFractionFullLocalstorage() > (1-fractionFreeGoal))) {
     let oldestReplay = postIDs[0]
-    console.log(`storage too big (${getFractionFullLocalstorage()*100}%), trimming reply id ${oldestReplay}`)
     deleteReplay(oldestReplay)
+    await sleep(100)  // so it doesn't lag... maybe...
     postIDs = postIDs.slice(1)  // slice off first replay
   }
   const newSize = getSizeLocalstorage()
+  refreshStats()
   console.log(`finished trimming, reduced size from ${initialSize} bytes to ${newSize} bytes`)
 }
 
@@ -353,29 +278,48 @@ function refreshStats() {
   if (totalReplays && percentUsed === "0.0") {
     percentUsed = "0.1"
   }
-  // let text = `${totalReplays} replays stored (${percentUsed}% full)`
-  let text = `${totalReplays} replays stored`
+  let text = `${totalReplays} replays stored (${percentUsed}% full)`
+  // let text = `${totalReplays} replays stored`
   updateFooterStats(text)
 }
 
 function updateFooterStats(text) {
   // add new footer elm with stats text
-  let footerStatsElm = document.getElementById("replay-stats")
+  let footerStatsElm = document.querySelector("#replay-stats a")
+
   // just update text if elm is there already
   if (footerStatsElm) {
     footerStatsElm.innerText = text
     return
   }
-  // add stats elm to footer
+
+  // otherwise, add the stats elm to footer
   let span = document.createElement("span")
   span.id = "replay-stats"
   span.classList.add("act")
-  span.style.marginLeft = "auto"  // push it over to the right
-  span.innerText = text
+
+  let link = document.createElement("a")
+  link.innerText = text
+  link.addEventListener("click", () => {
+    toggleStandaloneReplayBox()
+  })
+
+  span.append(link)
+
   let footer = document.getElementsByClassName("bottom-margin")[0]
   footer.appendChild(span)
 }
 
+
+
+function toggleStandaloneReplayBox() {
+  let parent = document.getElementById("action-replay")
+  if (parent.style.display === "none") {
+    parent.style.display = ""
+  } else {
+    parent.style.display = "none"
+  }
+}
 
 
 
@@ -418,6 +362,10 @@ function setReplay(postID, replayObject) {
   // set replay data for given postID
   if (VERBOSE_LOG_LOCALSTORAGE) { console.log(`%csetting storage for id ${postID}:\n${JSON.stringify(replayObject)}`, "color:cyan") }
   localStorage.setItem(key(postID), JSON.stringify(replayObject))
+}
+
+function getAllReplays() {
+  // return obj of all replays
 }
 
 function getAllReplayIDs() {
@@ -501,6 +449,9 @@ const LOVELY_CSS = `
   flex-direction: column;
   padding: 1em;
   font-size: 14px;
+  max-height: 200px;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 #replay-post {
@@ -513,7 +464,7 @@ const LOVELY_CSS = `
   min-height: 4em;
 }
 
-#replay-post.playing {
+#replay-post.replaying {
   color: white;
   border-color: lime;
 }
@@ -529,10 +480,12 @@ const LOVELY_CSS = `
   margin-left: 0.15em;
   margin-right: 0.5em;
   color: var(--text-color);
-  transition: 0.1s;
 }
 article:not(.reply-form):hover .replay-button {
   opacity: 1;
+}
+.replay-button:hover {
+  transition: 0.1s;
 }
 
 .svg-refresh {
@@ -543,6 +496,10 @@ article:not(.reply-form):hover .replay-button {
   stroke-linecap: round;
   fill: none !important;
   transition: 0.1s;
+}
+
+#replay-stats {
+  margin-left: auto;
 }
 
 /* replay exists */
@@ -580,10 +537,10 @@ article.replaying .svg-refresh {
 /* tooltip */
 .replay-button:before {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 100%;
-  margin-left: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100%;
+  margin-bottom: 4px;
   width: auto;
   padding: 3px 6px;
   border-radius: 9px;
@@ -599,7 +556,7 @@ article.replaying .svg-refresh {
 }
 /* tooltip text */
 .replay-button:not(.invalid):before {
-  content: "click to replay post";
+  content: "replay post";
 }
 .replay-button.invalid:before {
   content: "no replay found ;(";
@@ -629,28 +586,55 @@ function createButtonElement(label, clickFunction) {
 }
 
 
+
+function addReplayIDToBox(id) {
+  let selection = document.getElementById("replay-selection")
+  let link = document.createElement("a")
+  link.innerText = `>>${id}`
+  link.addEventListener("click", () => {
+    replayPostStandalone(id)
+  })
+  selection.append(link)
+}
+
+
 function addReplayBox() {
   // add box that posts can be replayed within
   // depreciated in favour of playing within post itself but will eventually be used to display deleted post content
   let parent = document.createElement("div")
+  let selection = document.createElement("div")
   let selectionControls = document.createElement("div")
   let replay = document.createElement("div")
   let replayControls = document.createElement("div")
 
   parent.id = "action-replay"
+  selection.id = "replay-selection"
   selectionControls.id = "replay-selection-controls"
   replay.id = "replay-post"
   replayControls.id = "replay-post-controls"
 
-  // clear all replays from storage
-  let buttonClearReplays = createButtonElement(
-    "clear replays", () => {
-      if (confirm("really delete all replays?")) {
-        deleteAllReplays()
-        refreshStats()
-      }
-    }
-  )
+  parent.style.display = "none"  // start hidden
+
+  // // clear all replays from storage
+  // let buttonClearReplays = createButtonElement(
+  //   "clear replays", () => {
+  //     if (confirm("really delete all replays?")) {
+  //       deleteAllReplays()
+  //       refreshStats()
+  //     }
+  //   }
+  // )
+
+  let replayIDs = getAllReplayIDs()
+  for (let id of replayIDs) {
+    let link = document.createElement("a")
+    link.innerText = `>>${id}`
+    link.addEventListener("click", () => {
+      replayPostStandalone(id)
+    })
+    selection.append(link)
+  }
+
 
   // stop playback
   let buttonStop = createButtonElement(
@@ -660,9 +644,10 @@ function addReplayBox() {
     }
   )
 
-  selectionControls.append(buttonClearReplays)
+  // selectionControls.append(buttonClearReplays)
   replayControls.append(buttonStop)
   parent.append(
+    selection,
     selectionControls,
     replay,
     replayControls
@@ -727,6 +712,11 @@ async function addReplayButtonToPosts() {
   for (let postID in allPosts) {
     let postElm = document.getElementById(`p${postID}`)
     let header = postElm.getElementsByTagName("header")[0]
+    // don't add if it already has it
+    if (header.querySelector(".replay-button")) {
+      console.error("tried to add replay button but post already has it, id: " + postID)
+      return
+    }
     let replayButton = createReplayButton()
     // if post is being edited as we load the page, nab its current text as the base for our replay
     if (allPosts[postID].editing) {
@@ -745,7 +735,7 @@ async function addReplayButtonToPosts() {
 
 
 async function replayPost(postID) {
-  // replay keystrokes of a post, within itself
+  // replay keystrokes of a post, within the post itself
 
   // ignore clicks while user is editing their own post
   if (postID === "p0"){
@@ -823,6 +813,45 @@ async function replayPost(postID) {
 }
 
 
+async function replayPostStandalone(postID) {
+  // replay keystrokes of a post, in the standalone box
+  let replay = getReplay(postID)
+  let box = document.getElementById("replay-post")
+
+  let currentPost = ""
+
+  // set up for playback
+  box.classList.add("replaying")  // for our replay button to stay visible
+
+  // process each step of the replay
+  for (let i=0; i<replay.steps.length; i++) {
+    const step = replay.steps[i]
+    const wait = replay.waits[i]
+    currentPost = processReplayStep(currentPost, step)
+
+    // each wait value is the time BEFORE its associated step
+    await sleep(wait)
+
+    // process playback flags
+    if (box.classList.contains("stop")) {
+      console.log("stopped")
+      box.classList.remove("stop")
+      break
+    }
+
+    // display next step
+    box.innerText = currentPost
+  }
+
+  // finished playing
+  await sleep(500)  // aesthetic only so it doesn't snap back as soon as the last char is printed
+
+  // return to original state
+  box.classList.remove("replaying")
+
+}
+
+
 function processReplayStep(baseString, value) {
   // process our values and spit out the modified baseString
 
@@ -867,6 +896,8 @@ async function main() {
   setTimeout(async () => {await addReplayButtonToPosts()}, 1000)
 
   refreshStats()
+
+  addReplayBox()
 
 }
 
